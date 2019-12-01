@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from .models import Salfa
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -15,3 +16,34 @@ class UserCreateSerializer(serializers.ModelSerializer):
         new_user.set_password(password)
         new_user.save()
         return validated_data
+
+
+
+class SalfaCreateUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Salfa
+        fields = [
+        'name',
+        'type',
+        'owner',
+        'description',
+        'price',
+        'img',
+            ]
+
+
+class SalfaInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Salfa
+        fields = [
+        'id', 
+        'name',
+        'type',
+        'owner',
+        'description',
+        'price',
+        'img',
+
+        ]
+
+
