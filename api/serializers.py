@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Salfa
+from .models import Salfa, Cart,CartSalfa
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -46,4 +46,31 @@ class SalfaInfoSerializer(serializers.ModelSerializer):
 
         ]
 
+class AddToCartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartSalfa
+        fields = [
+        'cart',
+        'salfa',
+        ]
+
+
+# class CartSerializer(serializers.ModelSerializer):
+#     total_price = serializers.SerializerMethodField()
+#     class Meta:
+#         model = Cart
+#         fields = [
+#         'id',
+#         'name',
+#         'type',
+#         'price',
+#         'img','total_price'
+#         ]
+
+#     def get_total_price(self,obj):
+#         total =0
+#         for bought in obj.salfa.all():
+#             prices = bought.price
+#             total += prices
+#         return total
 

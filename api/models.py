@@ -16,3 +16,13 @@ class Salfa(models.Model):
 # class FavoriteSalfa(models.Model):
 #     salfa = models.ForeignKey(Salfa, on_delete=models.CASCADE)
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Cart(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	salfa = models.ManyToManyField(Salfa, through="CartSalfa")
+
+
+class CartSalfa(models.Model):
+	salfa = models.ForeignKey(Salfa, on_delete=models.CASCADE)
+	cart = models.ForeignKey(Cart, on_delete=models.CASCADE)

@@ -1,6 +1,7 @@
-from .models import Salfa
+from .models import Salfa, Cart,CartSalfa
 from rest_framework.generics import (
 	ListAPIView,
+	RetrieveAPIView,
 	RetrieveUpdateAPIView,
 	DestroyAPIView,
 	CreateAPIView,
@@ -9,12 +10,29 @@ from .serializers import (
 	UserCreateSerializer,
 	SalfaInfoSerializer, 
 	SalfaCreateUpdateSerializer,
+	AddToCartSerializer,
+	# CartSerializer
 	)
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from .permissions import IsOwner
 
 class UserCreateAPIView(CreateAPIView):
 	serializer_class = UserCreateSerializer
+
+
+class AddToCartView(CreateAPIView):
+	serializer_class = AddToCartSerializer
+	permission_classes = [IsAuthenticated,IsOwner,]
+
+	
+	
+# Not Needed Yet ! [for checkout feature]
+
+# class CartAPIView(RetrieveAPIView):
+# 	queryset = Cart.objects.all()
+# 	serializer_class = CartSerializer
+# 	lookup_field = 'id'
+# 	permission_classes = [IsAuthenticated, IsOwner,]
 
 
 class SalfaInfoView(ListAPIView):
