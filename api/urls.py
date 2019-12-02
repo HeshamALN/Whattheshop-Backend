@@ -5,6 +5,9 @@ from .views import (
 	SalfaUpdateView, 
 	SalfaDeleteView, 
 	SalfaCreateView,
+	AddToCartView,
+	# CartAPIView
+
 	)
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -15,5 +18,9 @@ urlpatterns = [
 	path('create/', SalfaCreateView.as_view(), name='api-create'),
 	path('update/<int:salfa_id>/', SalfaUpdateView.as_view(), name='api-update'),
 	path('delete/<int:salfa_id>', SalfaDeleteView.as_view(), name='api-delete'),
+	path('cart/add/', AddToCartView.as_view(), name="cart-add"),
+	# path('cart/', CartAPIView.as_view(), name="cart-checkout"),
+
+
 
 ]
