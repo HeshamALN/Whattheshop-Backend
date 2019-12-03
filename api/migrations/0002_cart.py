@@ -13,11 +13,19 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+    migrations.CreateModel(
+            name='CartSalfa',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('cart', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Cart')),
+                ('salfa', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Salfa')),
+            ],
+        ),
         migrations.CreateModel(
             name='Cart',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('salfa', models.ManyToManyField(to='api.Salfa')),
+                ('salfa', models.ManyToManyField (through='api.CartSalfa', to='api.Salfa')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
