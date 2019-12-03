@@ -7,6 +7,9 @@ from .views import (
 	SalfaCreateView,
 	AddToCartView,
 	CartCheckoutAPIView,
+	# CartAPIView
+	ProfileAPIView
+
 	)
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -19,6 +22,10 @@ urlpatterns = [
 	path('delete/<int:salfa_id>', SalfaDeleteView.as_view(), name='api-delete'),
 	path('cart/add/', AddToCartView.as_view(), name="cart-add"),
 	path('checkout/', CartCheckoutAPIView.as_view(), name="cart-checkout"),
+
+	# path('cart/', CartAPIView.as_view(), name="cart-checkout"),
+	path('profile/>', ProfileAPIView.as_view(), name='profile'),
+
 
 
 

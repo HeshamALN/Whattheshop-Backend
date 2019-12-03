@@ -27,3 +27,6 @@ class Cart(models.Model):
 class CartSalfa(models.Model):
     salfa = models.ForeignKey(Salfa, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+
+
+
