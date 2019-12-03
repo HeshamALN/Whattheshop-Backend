@@ -7,16 +7,38 @@ class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'password', 'first_name', 'last_name']
 
     def create(self, validated_data):
         username = validated_data['username']
         password = validated_data['password']
-        new_user = User(username=username)
+        first_name = validated_data['first_name']
+        last_name = validated_data['last_name']
+        new_user = User(username=username, first_name=first_name, last_name=last_name)
         new_user.set_password(password)
         new_user.save()
         return validated_data
 
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name", "username"]
+
+
+class SalfaInfoSerializer(serializers.ModelSerializer):
+    owner = UserSerializer()
+    class Meta:
+        model = Salfa
+        fields = [
+        'id', 
+        'name',
+        'type',
+        'owner',
+        'description',
+        'price',
+        'img',
+        ]
 
 
 class SalfaCreateUpdateSerializer(serializers.ModelSerializer):
@@ -29,22 +51,10 @@ class SalfaCreateUpdateSerializer(serializers.ModelSerializer):
         'description',
         'price',
         'img',
-            ]
-
-
-class SalfaInfoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Salfa
-        fields = [
-        'id', 
-        'name',
-        'type',
-        'owner',
-        'description',
-        'price',
-        'img',
-
         ]
+
+
+
 
 class AddToCartSerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,6 +63,8 @@ class AddToCartSerializer(serializers.ModelSerializer):
         'cart',
         'salfa',
         ]
+
+
 
 
 # class CartSerializer(serializers.ModelSerializer):
