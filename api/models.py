@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 class Salfa(models.Model):
     name = models.CharField(max_length=120)
     type = models.CharField(max_length=120)
@@ -28,5 +29,9 @@ class CartSalfa(models.Model):
     salfa = models.ForeignKey(Salfa, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
 
+<<<<<<< HEAD
 
+=======
+                                                                
+>>>>>>> profilebackend FEE MOSHKILAAgit add .git add .
 

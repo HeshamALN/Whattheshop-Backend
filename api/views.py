@@ -1,11 +1,14 @@
 from .models import Salfa, Cart,CartSalfa
+<<<<<<< HEAD
 from django.contrib.auth.models import User
+=======
+>>>>>>> profilebackend FEE MOSHKILAAgit add .git add .
 from rest_framework.generics import (
 	ListAPIView,
 	RetrieveAPIView,
 	RetrieveUpdateAPIView,
 	DestroyAPIView,
-	CreateAPIView,
+	CreateAPIView
 	)
 from rest_framework.views import APIView
 from .serializers import (
@@ -42,9 +45,17 @@ class CartCheckoutAPIView(APIView):
 		return Response()
 
 class ProfileAPIView(RetrieveAPIView):
+<<<<<<< HEAD
 	queryset = User.objects.all()
 	serializer_class = ProfileSerializer
 	permission_classes = [IsAuthenticated]
+=======
+	serializer_class = ProfileSerializer
+	# permission_classes = [IsAuthenticated]
+
+	def get_queryset(self):
+		return self.request.user
+>>>>>>> profilebackend FEE MOSHKILAAgit add .git add .
 
 # Not Needed Yet ! [for checkout feature]
 

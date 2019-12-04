@@ -88,8 +88,21 @@ class AddToCartSerializer(serializers.ModelSerializer):
 #PROFILE
 #
 class ProfileSerializer(serializers.ModelSerializer):
+<<<<<<< HEAD
     # MAKE THE CART LATER
 
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username']
+=======
+    # user = UserSerializer()
+    # history = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+    # def get_history(self, obj):
+    #     order = Cart.objects.filter(user=obj.user)
+    #     return CartSerializer(order, many=True).data
+
+>>>>>>> profilebackend FEE MOSHKILAAgit add .git add .

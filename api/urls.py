@@ -24,7 +24,11 @@ urlpatterns = [
 	path('checkout/', CartCheckoutAPIView.as_view(), name="cart-checkout"),
 
 	# path('cart/', CartAPIView.as_view(), name="cart-checkout"),
+<<<<<<< HEAD
 	path('profile/>', ProfileAPIView.as_view(), name='profile'),
+=======
+	path('profile/', ProfileAPIView.as_view(), name='profile'),
+>>>>>>> profilebackend FEE MOSHKILAAgit add .git add .
 
 
 
