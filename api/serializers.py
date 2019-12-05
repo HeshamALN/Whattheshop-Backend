@@ -66,23 +66,3 @@ class AddToCartSerializer(serializers.ModelSerializer):
 
 
 
-
-# class CartSerializer(serializers.ModelSerializer):
-#     total_price = serializers.SerializerMethodField()
-#     class Meta:
-#         model = Cart
-#         fields = [
-#         'id',
-#         'name',
-#         'type',
-#         'price',
-#         'img','total_price'
-#         ]
-
-#     def get_total_price(self,obj):
-#         total =0
-#         for bought in obj.salfa.all():
-#             prices = bought.price
-#             total += prices
-#         return total
-
