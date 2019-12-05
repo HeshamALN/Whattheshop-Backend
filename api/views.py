@@ -1,10 +1,11 @@
 from .models import Salfa, Cart,CartSalfa
+from django.contrib.auth.models import User
 from rest_framework.generics import (
 	ListAPIView,
 	RetrieveAPIView,
 	RetrieveUpdateAPIView,
 	DestroyAPIView,
-	CreateAPIView,
+	CreateAPIView
 	)
 from rest_framework.views import APIView
 from .serializers import (
@@ -12,6 +13,9 @@ from .serializers import (
 	SalfaInfoSerializer, 
 	SalfaCreateUpdateSerializer,
 	AddToCartSerializer,
+	# CartSerializer, 
+	ProfileSerializer
+
 	)
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from .permissions import IsOwner
@@ -37,6 +41,15 @@ class CartCheckoutAPIView(APIView):
 		Cart.objects.create(user=self.request.user)
 		return Response()
 
+class ProfileAPIView(RetrieveAPIView):
+	serializer_class = ProfileSerializer
+	permission_classes = [IsAuthenticated]
+
+	def get_object(self):
+		return self.request.user
+
+# Not Needed Yet ! [for checkout feature]
+
 
 
 class SalfaInfoView(ListAPIView):
@@ -47,7 +60,7 @@ class SalfaInfoView(ListAPIView):
 
 class SalfaCreateView(CreateAPIView):
 	serializer_class = SalfaCreateUpdateSerializer
-	permission_classes = [IsAuthenticated,]
+	permission_classes = [IsAuthenticated]
 
 	def perform_create(self, serializer):
 		serializer.save(owner=self.request.user)

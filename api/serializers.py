@@ -65,4 +65,11 @@ class AddToCartSerializer(serializers.ModelSerializer):
         ]
 
 
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
 
+    # def get_history(self, obj):
+    #     order = Cart.objects.filter(user=obj.user)
+    #     return CartSerializer(order, many=True).data
