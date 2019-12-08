@@ -21,6 +21,7 @@ urlpatterns = [
 	path('update/<int:salfa_id>/', SalfaUpdateView.as_view(), name='api-update'),
 	path('delete/<int:salfa_id>', SalfaDeleteView.as_view(), name='api-delete'),
 	path('cart/add/', AddToCartView.as_view(), name="cart-add"),
+	# path('history/', views.OrderHistory.as_view(), name="history"),
 	path('checkout/', CartCheckoutAPIView.as_view(), name="cart-checkout"),
 	# path('cart/', CartAPIView.as_view(), name="cart-checkout"),
 	path('profile/', ProfileAPIView.as_view(), name='profile'),

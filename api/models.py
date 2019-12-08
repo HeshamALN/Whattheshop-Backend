@@ -20,11 +20,11 @@ class Salfa(models.Model):
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name="carts" )
     salfa = models.ManyToManyField(Salfa, through="CartSalfa")
     checkout_status = models.BooleanField(default= False)
 
 
 class CartSalfa(models.Model):
-    salfa = models.ForeignKey(Salfa, on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    salfa = models.ForeignKey(Salfa, on_delete=models.CASCADE, related_name="cart_salfa")
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cart_salfa")
