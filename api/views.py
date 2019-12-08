@@ -79,3 +79,4 @@ class SalfaDeleteView(DestroyAPIView):
 	lookup_field = 'id'
 	lookup_url_kwarg = 'salfa_id'
 	permission_classes = [IsAuthenticated,IsAdminUser]
+
