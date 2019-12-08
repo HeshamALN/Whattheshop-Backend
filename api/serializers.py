@@ -66,7 +66,7 @@ class OrderHistorySerializer(serializers.ModelSerializer):
     cart_salfa = AddToCartSerializer(many=True)
     class Meta:
         model = Cart
-        fields = ['user','salfa','checkout_status']
+        fields = ['checkout_status', 'cart_salfa']
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -78,4 +78,4 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     # def get_history(self, obj):
     #     order = Cart.objects.filter(user=obj.user)
-    #     return CartSerializer(order, many=True).data
+        return CartSerializer(order, many=True).data

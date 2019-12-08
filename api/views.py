@@ -39,7 +39,7 @@ class CartCheckoutAPIView(APIView):
 		cart.checkout_status = True
 		cart.save()
 		Cart.objects.create(user=self.request.user)
-		return Response()
+		return Response(OrderHistorySerializer(cart).data)
 
 class ProfileAPIView(RetrieveAPIView):
 	serializer_class = ProfileSerializer
