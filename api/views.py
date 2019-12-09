@@ -14,7 +14,8 @@ from .serializers import (
 	SalfaCreateUpdateSerializer,
 	AddToCartSerializer,
 	# CartSerializer, 
-	ProfileSerializer
+	ProfileSerializer,
+	OrderHistorySerializer
 
 	)
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
@@ -28,6 +29,9 @@ class UserCreateAPIView(CreateAPIView):
 class AddToCartView(CreateAPIView):
 	serializer_class = AddToCartSerializer
 	permission_classes = [IsAuthenticated,IsOwner,]
+
+	def perform_create(self, serializer):
+		serializer.save(cart=Cart.objects.get(user=self.request.user, checkout_status=False))
 
 
 class CartCheckoutAPIView(APIView):
