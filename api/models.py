@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.template.defaultfilters import slugify
+
 
 
 
@@ -28,3 +32,9 @@ class Cart(models.Model):
 class CartSalfa(models.Model):
     salfa = models.ForeignKey(Salfa, on_delete=models.CASCADE, related_name="cart_salfa")
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cart_salfa")
+
+
+@receiver(post_save, sender=CartSalfa)
+def create_user_cart(sender, instance, created, **kwargs):
+    if created:
+        Cart.objects.create(user=instance)
