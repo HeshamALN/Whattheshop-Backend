@@ -58,7 +58,6 @@ class AddToCartSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartSalfa
         fields = [
-        'cart',
         'salfa',
         ]
 
