@@ -28,14 +28,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class SalfaInfoSerializer(serializers.ModelSerializer):
-    owner = UserSerializer()
+    # owner = UserSerializer()
     class Meta:
         model = Salfa
         fields = [
         'id', 
         'name',
         'type',
-        'owner',
+        # 'owner',
         'description',
         'price',
         'img',
@@ -58,7 +58,9 @@ class AddToCartSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartSalfa
         fields = [
+        "id",
         'salfa',
+
         ]
 
 class SalfaInsideCart(serializers.ModelSerializer):
@@ -85,7 +87,3 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = User
 
         fields = ['first_name', 'last_name', 'email', 'username','carts']
-
-    # # def get_history(self, obj):
-    # #     order = Cart.objects.filter(user=obj.user)
-    #     return CartSerializer(order, many=True).data

@@ -7,7 +7,7 @@ from .views import (
 	SalfaCreateView,
 	AddToCartView,
 	CartCheckoutAPIView,
-	# CartAPIView
+	SalfaDeleteFromCartView,
 	ProfileAPIView
 
 	)
@@ -19,11 +19,10 @@ urlpatterns = [
 	path('info/', SalfaInfoView.as_view(), name='api-info'),
 	path('create/', SalfaCreateView.as_view(), name='api-create'),
 	path('update/<int:salfa_id>/', SalfaUpdateView.as_view(), name='api-update'),
-	path('delete/<int:salfa_id>', SalfaDeleteView.as_view(), name='api-delete'),
+	path('delete/<int:salfa_id>/', SalfaDeleteView.as_view(), name='api-delete'),
+	path('delete/added/<int:salfa_id>/', SalfaDeleteFromCartView.as_view(), name='api-delete'),
 	path('cart/add/', AddToCartView.as_view(), name="cart-add"),
-	# path('history/', views.OrderHistory.as_view(), name="history"),
 	path('checkout/', CartCheckoutAPIView.as_view(), name="cart-checkout"),
-	# path('cart/', CartAPIView.as_view(), name="cart-checkout"),
 	path('profile/', ProfileAPIView.as_view(), name='profile'),
 
 
