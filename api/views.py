@@ -39,7 +39,7 @@ class CartCheckoutAPIView(APIView):
 		cart.checkout_status = True
 		cart.save()
 		Cart.objects.create(user=self.request.user)
-		return Response()
+		return Response(OrderHistorySerializer(cart).data)
 
 class ProfileAPIView(RetrieveAPIView):
 	serializer_class = ProfileSerializer
@@ -79,3 +79,4 @@ class SalfaDeleteView(DestroyAPIView):
 	lookup_field = 'id'
 	lookup_url_kwarg = 'salfa_id'
 	permission_classes = [IsAuthenticated,IsAdminUser]
+

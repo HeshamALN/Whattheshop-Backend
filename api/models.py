@@ -38,12 +38,3 @@ class CartSalfa(models.Model):
 def create_user_cart(sender, instance, created, **kwargs):
     if created:
         Cart.objects.create(user=instance)
-
-
-
-
-
-
-
-
-
