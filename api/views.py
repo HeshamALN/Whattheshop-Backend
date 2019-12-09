@@ -13,7 +13,6 @@ from .serializers import (
 	SalfaInfoSerializer, 
 	SalfaCreateUpdateSerializer,
 	AddToCartSerializer,
-	# CartSerializer, 
 	ProfileSerializer,
 	OrderHistorySerializer
 
@@ -52,10 +51,6 @@ class ProfileAPIView(RetrieveAPIView):
 	def get_object(self):
 		return self.request.user
 
-# Not Needed Yet ! [for checkout feature]
-
-
-
 class SalfaInfoView(ListAPIView):
 	queryset = Salfa.objects.all()
 	serializer_class = SalfaInfoSerializer
@@ -82,5 +77,21 @@ class SalfaDeleteView(DestroyAPIView):
 	serializer_class = SalfaInfoSerializer
 	lookup_field = 'id'
 	lookup_url_kwarg = 'salfa_id'
-	permission_classes = [IsAuthenticated,IsAdminUser]
+	permission_classes = [IsAuthenticated]
+
+
+class SalfaDeleteFromCartView(DestroyAPIView):
+	queryset = CartSalfa.objects.all()
+	serializer_class = AddToCartSerializer
+	lookup_field = 'id'
+	lookup_url_kwarg = 'salfa_id'
+	permission_classes = [IsAuthenticated]
+
+
+
+
+
+
+
+
 
