@@ -62,11 +62,22 @@ class AddToCartSerializer(serializers.ModelSerializer):
         'salfa',
         ]
 
+class SalfaInsideCart(serializers.ModelSerializer):
+    class Meta:
+        model = Salfa
+        fields = [
+        'name', 
+        'type', 
+        'description', 
+        'price', 
+        'img',
+        ]
+
 class OrderHistorySerializer(serializers.ModelSerializer):
-    cart_salfa = AddToCartSerializer(many=True)
+    salfa = SalfaInsideCart(many=True)
     class Meta:
         model = Cart
-        fields = ['checkout_status', 'cart_salfa']
+        fields = ['checkout_status', 'salfa']
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -76,6 +87,6 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         fields = ['first_name', 'last_name', 'email', 'username','carts']
 
-    # def get_history(self, obj):
-    #     order = Cart.objects.filter(user=obj.user)
-        return CartSerializer(order, many=True).data
+    # # def get_history(self, obj):
+    # #     order = Cart.objects.filter(user=obj.user)
+    #     return CartSerializer(order, many=True).data

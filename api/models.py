@@ -34,7 +34,7 @@ class CartSalfa(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cart_salfa")
 
 
-@receiver(post_save, sender=CartSalfa)
+@receiver(post_save, sender=User)
 def create_user_cart(sender, instance, created, **kwargs):
     if created:
         Cart.objects.create(user=instance)
